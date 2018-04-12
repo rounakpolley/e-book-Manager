@@ -1,0 +1,16 @@
+https://stackoverflow.com/questions/2429045/iframe-src-change-event-detection
+https://stackoverflow.com/questions/938180/get-current-url-from-iframe
+https://stackoverflow.com/questions/13439303/detect-click-event-inside-iframe
+https://stackoverflow.com/questions/31659280/customizing-pdf-js
+
+https://stackoverflow.com/questions/31659280/customizing-pdf-jshttps://stackoverflow.com/questions/31659280/customizing-pdf-js
+https://stackoverflow.com/questions/4410183/javascript-detection-of-a-link-click-inside-an-iframe
+
+
+
+
+
+<iframe src="/test.html" onLoad="alert(this.contentWindow.location);"></iframe>
+<iframe src="http://www.google.com/" onLoad="alert('Test');"></iframe>
+document.getElementById("iframe_id").contentWindow.location.href
+

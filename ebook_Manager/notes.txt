@@ -1,0 +1,10 @@
+UPLOAD MULTIPLE FILES
+============================
+https://stackoverflow.com/questions/1175347/how-can-i-select-and-upload-multiple-files-with-html-and-php-using-http-post
+
+Call for dynamically changing pdf
+displayDocument(1, 0, 1.6, "files/gw.pdf"); // only change the last parameter with relative path
+
+have alerts on clicking exit and logout from settings
+
+javascript:void(0) in <a>  href to prevent any action
