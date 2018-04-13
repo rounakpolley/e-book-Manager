@@ -1,4 +1,9 @@
+Default
 admin :
 user :admin
+
 password :0123
 
+
+win10
+pass : golukgec
