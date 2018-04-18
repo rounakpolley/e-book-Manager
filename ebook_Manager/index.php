@@ -27,14 +27,13 @@ check_login();
 	<script type="text/javascript" src="scripts/pdfviewer.js"></script>
 	<script type="text/javascript" src="scripts/systemviewer.js"></script>
 	
-	<!--<base target="iframe_fileview">-->
 </head>
 <body id="main_body">
 	
 	<div id="system-viewer">
 
 		<div id="system-header">
-			e-book Manager
+			<img src="graphics/logo.png" style="height: 40px; margin-top: -7px;"/>
 			<div class="dropdown">
 				<img id="settings" src="icons/gear.png" type="button" aria-haspopup="true" aria-expanded="true"
 					class="floating-action-button dropdown-toggle" data-toggle="dropdown" ><!--dropdown-->
@@ -186,18 +185,22 @@ check_login();
 		<div class="dropup">
 			<img id="new-file-catalogue" class="floating-action-button dropdown-toggle" src="icons/add.png"  type="button"  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		  	<ul id="file-catalogue-modal" class="dropdown-menu" aria-labelledby="new-file-catalogue">
-		  		<form action = "upload.php" method="post" enctype="multipart/form-data" id="new-file-catalogue-form">
+		  		<form action="upload.php" method="post" enctype="multipart/form-data" id="new-file-catalogue-form">
 		  			<div id="file-modal-contents">
 			  			<h4>Upload e-books</h4>
-			  			<input type="file" id="fileToUpload" name="fileToUpload" multiple style="width: 240px;" /><!--see notes-->
+			  			<input type="file" id="fileToUpload" name="fileToUpload" multiple 
+                               style="width: 240px;" required /><!--see notes-->
 			  		</div>
 			  		<div id="catalogue-modal-contents">
 			  			<h4>Create a new Catalogue</h4>
-			  			<input type="text" id="new-catalogue-name" name="new-catalogue-name" placeholder="Catalogue name" style="width: 250px;"><br/>
+			  			<input type="text" id="new-catalogue-name" name="new-catalogue-name" 
+                               placeholder="Catalogue name" style="width: 250px;" required ><br/>
 			  			<br/>
-			  			<textarea id="new-catalogue-desc" name="new-catalogue-desc" placeholder="Description ..." 	 	style="width: 250px;"></textarea>
+			  			<textarea id="new-catalogue-desc" name="new-catalogue-desc" 
+                                  placeholder="Description ..." style="width: 250px;" required ></textarea>
 			  		</div><br/>
-			  		<button type="submit"  value="Upload Image" name="submit" class="btn btn-success" style="float: right;">Done</button>
+			  		<button type="submit"  id="upload_file-create_catalogue" name="upload_file-create_catalogue" 
+                            class="btn btn-success" style="float: right;">Done</button>
 		  		</form>
 		  	</ul>
 		</div>
@@ -213,6 +216,27 @@ check_login();
 	<div id="notes-drawer" class="sidenav">
 	  	<a href="javascript:void(0)" class="closebtn" id="notes-close">&times;</a>
 	  	<!-- do it -->
+        <form action="" method="post" enctype="multipart/form-data" id="new-note-form">
+            <div style="padding-left: 20px;">
+                <h3 style="color: white">Make a new note <br/><small>to be added to the current catalogue</small></h3>
+                <input id="new-note-name" name="new-note-name" class="note-form-content" type="text"
+                       placeholder="Note Name" value="default : Note no.1"
+                       style="width: 18vw;"/><br/><br/>
+                <!-- generate a default value from php -->
+                <textarea id="new-note-text" name="new-note-text" class="note-form-content" 
+                          placeholder="Jot down notes.." style="width: 18vw;"></textarea><br/>
+                <textarea id="new-note-links" name="new-note-links" class="note-form-content" 
+                       type="url" placeholder="Enter each link in separate line"
+                          style="overflow-x: auto; white-space: nowrap; width: 18vw;"></textarea><br/>
+                <h5 style="color: white">Upload images with note</h5>
+                <input id="new-note-images" name="new-note-images" class="note-form-content" 
+                       style="width: 18vw; color: white;"
+                       type="file" style="color: white;" multiple /><br/>
+                <button type="submit" value="submit-note" id="submit-note" name="submit-note" 
+                        style="margin-left: 10vw;"
+                        class="btn btn-warning">Make Note</button>
+            </div>
+        </form>
 	</div>
 
 </body>

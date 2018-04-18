@@ -145,5 +145,5 @@ $(document).ready(function(){
 		console.log("scrollPercent :",doc_per," %");
 		document.getElementById("notes-drawer").style.width = "24.5vw";
 	}
-
+    //$("make-note").trigger("click");
 });

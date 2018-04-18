@@ -90,11 +90,13 @@ height: calc(100vh - 80px);
 .panel-heading:hover{
 	cursor: pointer;
 }
+
 /* for notes */
 
 .sidenav {
     height: 100%;       width: 0;       position: fixed;    z-index: 100;       top: 0;     left: 0;
     background-color: #111;             overflow-x: hidden; transition: 0.2s;   padding-top: 60px;
+    padding-left: 20px;
 }
 .sidenav a {
     padding: 8px 8px 8px 32px;  text-decoration: none;      color: #818181;
@@ -105,6 +107,13 @@ height: calc(100vh - 80px);
 }
 .sidenav .closebtn {
     position: absolute;         top: 0;     right: 15px;    font-size: 50px;    margin-left: 50px;  margin-top: -20px; 
+}
+
+#notes-drawer > #new-note-form{
+    margin-top: 50px;   margin-left: 20px;
+}
+.note-form-content{
+    width: 220px;
 }
 
 @media screen and (max-height: 450px){
@@ -119,3 +128,4 @@ height: calc(100vh - 80px);
 .folder-icon{
     height: 15px;       margin-top: -3px;   margin-right: 5px;
 }
+
