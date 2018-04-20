@@ -2,6 +2,12 @@
 session_start();
 include("../checklogin.php");
 check_login();	
+include('../dbconnection.php');
+?>
+
+<?php 
+	$id = $_SESSION['id'];
+	echo $id;
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,28 +69,31 @@ check_login();
 		      		</span>
 		    	</div>
 		    	<div id="files-show">
-					<div class="list-group"><!--jQuery add and remove list-group-item-success class-->
+					<div class="list-group">
+
+						<!--jQuery add and remove list-group-item-success class
 					  	<a id="file-holder-no-1" href="javascript:void(0)" value="files/gw.pdf" 
 					  		class="list-group-item list-group-item-success">
 							<img src="icons/file.png" class="file-icon">
 					  		<span id="file-no-1">File that is open</span>
-						</a>
-						<a href="#" class="list-group-item">
-							<img src="icons/file.png" class="file-icon">
-							<span id="file-no-2">Clicking on one  of the files sholud change the pdf view call displayDocument() with proper params</span>
-						</a>
-						<a href="#" class="list-group-item">
-							<img src="icons/file.png" class="file-icon">
-							<span id="file-no-3">remove list-group-item-success class from all anchors and add to the one clicked</span>
-						</a>
-						<a href="#" class="list-group-item">
-							<img src="icons/file.png" class="file-icon">
-							<span id="file-no-4">File name here</span>
-						</a>
-						<a href="#" class="list-group-item">
-							<img src="icons/file.png" class="file-icon">
-							<span id="file-no-5">other files</span>
-						</a>
+						</a>-->
+
+
+						<!-- Creating File List From Database.-->
+						<?php
+							$sql = "SELECT * FROM files where user_id = $id";
+							$result = mysqli_query($con,$sql);
+							while($row = mysqli_fetch_assoc($result))
+							{
+								echo '<a href="javascript:void(0)" ';
+								echo 'file_path="'.$row['rel_file_path'].'" class="list-group-item">';
+								echo '<img src="icons/file.png" class="file-icon">';
+								echo '<span id="'.$row['file_id'].'">'.$row['file_name'].'</span></a>';
+		
+							}
+						?>
+
+
 					</div>
 		    	</div>
 			</div>
@@ -97,7 +106,7 @@ check_login();
 		        		</button>
 		      		</span>
 		    	</div>
-				<div id="catalogues-show">
+				<!--<div id="catalogues-show">
 					<div id="catalogues-no-1" class="panel-group">
 		                <div class="panel panel-default panel-success">
 		                    <div  data-toggle="collapse" href="#catalogues-1-contents" class="panel-heading">
@@ -123,61 +132,49 @@ check_login();
 		                        </ul>
 		                    </div>
 		                </div>
-		            </div>
-		            <div id="catalogues-no-2" class="panel-group">
-		                <div class="panel panel-default">
-		                    <div  data-toggle="collapse" href="#catalogues-2-contents" class="panel-heading">
-		                        <h5 class="panel-title">
-		                        	<img src="icons/folder.png" class="folder-icon">
-		                        	<span id="catalogue-no-2">Catalogue name 2</span> &nbsp; <span class="caret"></span>
-		                        </h5>
-		                    </div>
-		                    <div id="catalogues-2-contents" class="panel-collapse collapse">
+		            </div> -->
+
+
+		            
+		            <!-- Creating Catalogue List From Database.-->
+						<?php
+							$sql = "SELECT * FROM catalogues where user_id = $id";
+							$result = mysqli_query($con,$sql);
+							while($row = mysqli_fetch_assoc($result))
+							{
+								
+								echo '<div id="catalogues-no-'. $row['catalogue_id'] .'" class="panel-group">';
+		                		echo '<div class="panel panel-default panel-success">';
+		                    	echo '<div  data-toggle="collapse" href="#catalogues-1-contents" class="panel-heading">';
+		                        echo '<h5 class="panel-title">';
+								echo '<img src="icons/folder.png" class="folder-icon">';
+		                        echo '<span id="catalogue-no-1">"'.$row['catalogue_name'].'"</span> &nbsp; <span class="caret"></span>';
+		                        echo '</h5>';
+		                    	echo '</div>';
+		                    	echo '<div id="catalogues-1-contents" class="panel-collapse collapse">';
+		                    	?>
 		                        <ul class="list-group">
 		                            <li class="list-group-item">
-		                            	<img src="icons/bookmark.png" class="folder-icon">
-		                            	<span id="bookmark-no-4">Bookmark name1</span>
+										<img src="icons/bookmark.png" class="folder-icon">
+		                            	<span id="bookmark-no-1">Bookmark name1</span>
 		                            </li>
 		                            <li class="list-group-item">
 		                            	<img src="icons/bookmark.png" class="folder-icon">
-		                            	<span id="bookmark-no-5">Bookmark No. 2</span>
+		                            	<span id="bookmark-no-2">Bookmark No. 2</span>
 		                            </li>
 		                            <li class="list-group-item">
 		                            	<img src="icons/bookmark.png" class="folder-icon">
-		                            	<span id="bookmark-no-6">Other</span>
-		                            </li>
-		                            <li class="list-group-item">
-		                            	<img src="icons/bookmark.png" class="folder-icon">
-		                            	<span id="bookmark-no-7">Other</span>
-		                            </li>
-		                            <li class="list-group-item">
-		                            	<img src="icons/bookmark.png" class="folder-icon">
-		                            	<span id="bookmark-no-8">Other</span>
-		                            </li>
-		                            <li class="list-group-item">
-		                            	<img src="icons/bookmark.png" class="folder-icon">
-		                            	<span id="bookmark-no-9">Other</span>
-		                            </li>
-		                            <li class="list-group-item">
-		                            	<img src="icons/bookmark.png" class="folder-icon">
-		                            	<span id="bookmark-no-10">Other</span>
-		                            </li>
-		                            <li class="list-group-item">
-		                            	<img src="icons/bookmark.png" class="folder-icon">
-		                            	<span id="bookmark-no-11">Other</span>
-		                            </li>
-		                            <li class="list-group-item">
-		                            	<img src="icons/bookmark.png" class="folder-icon">
-		                            	<span id="bookmark-no-12">Other</span>
-		                            </li>
-		                            <li class="list-group-item">
-		                            	<img src="icons/bookmark.png" class="folder-icon">
-		                            	<span id="bookmark-no-13">Other</span>
+		                            	<span id="bookmark-no-3">Remove panel-success class from all cateloges only with one that is currently open on click</span>
 		                            </li>
 		                        </ul>
 		                    </div>
 		                </div>
 		            </div>
+		            <?php
+							}
+						?>
+
+
 				</div>
 			</div>
 		</div>
@@ -188,16 +185,16 @@ check_login();
 		  		<form action="upload.php" method="post" enctype="multipart/form-data" id="new-file-catalogue-form">
 		  			<div id="file-modal-contents">
 			  			<h4>Upload e-books</h4>
-			  			<input type="file" id="fileToUpload" name="fileToUpload" multiple 
-                               style="width: 240px;" required /><!--see notes-->
+			  			<input type="file" id="fileToUpload" name="fileToUpload[]" multiple 
+                               style="width: 240px;"  /><!--see notes-->
 			  		</div>
 			  		<div id="catalogue-modal-contents">
 			  			<h4>Create a new Catalogue</h4>
 			  			<input type="text" id="new-catalogue-name" name="new-catalogue-name" 
-                               placeholder="Catalogue name" style="width: 250px;" required ><br/>
+                               placeholder="Catalogue name" style="width: 250px;" ><br/>
 			  			<br/>
 			  			<textarea id="new-catalogue-desc" name="new-catalogue-desc" 
-                                  placeholder="Description ..." style="width: 250px;" required ></textarea>
+                                  placeholder="Description ..." style="width: 250px;" ></textarea>
 			  		</div><br/>
 			  		<button type="submit"  id="upload_file-create_catalogue" name="upload_file-create_catalogue" 
                             class="btn btn-success" style="float: right;">Done</button>
@@ -238,7 +235,8 @@ check_login();
             </div>
         </form>
 	</div>
-
+<?php 
+mysqli_close($con);
+?>
 </body>
 </html>
-
