@@ -8,9 +8,12 @@
 
 #settings{
 	height: 30px;		left: 21.5vw;		top: 6px;
+    -webkit-transition: -webkit-transform 2s; /* Safari */
+    transition: transform 2s;
 }
 #settings-dropdown{
 	z-index: 100;		left: 12vw;			position: fixed;	top: 40px;overflow: visible !important;
+    width: 150px;
 }
 #settings-username{
 	font-weight: 900;
@@ -128,4 +131,7 @@ height: calc(100vh - 80px);
 .folder-icon{
     height: 15px;       margin-top: -3px;   margin-right: 5px;
 }
-
+#settings:hover {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}

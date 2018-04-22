@@ -6,6 +6,7 @@ $(document).ready(function(){
 	var zoom_level = 1.6;
 	var path = "";
 	var file_open = false;
+	var catalogue_open = false;
 
 	function renderPage(num){
 		//pdf global var
@@ -74,10 +75,59 @@ $(document).ready(function(){
       	.then(function(){
       		renderAllPages()//.then(arrange_pages());
 			});
-		};
+	};
+	
 
-	//$('[id^=file_]');
+	function ValidURL(str){
+		console.log(str);
+		var pattern = new RegExp('^(https?:\/\/)?'+ // protocol
+		    '((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|'+ // domain name
+		    '((\d{1,3}\.){3}\d{1,3}))'+ // OR ip (v4) address
+		    '(\:\d+)?(\/[-a-z\d%_.~+]*)*'+ // port and path
+		    '(\?[;&a-z\d%_.~+=-]*)?'+ // query string
+		    '(\#[-a-z\d_]*)?$','i'); // fragment locater
+	  	if(!pattern.test(str)){
+	    	//alert("Please enter a valid URL.");
+	    	return false;
+	  	}
+	  	else{
+	    	return true;
+	  	}
+	}
+	function isUrl(s) {
+		var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+	   	return regexp.test(s);
+	}
+	$('#new-note-links').keydown(function(evt){
+		var keycode = (evt.keyCode ? evt.keyCode : evt.which);
+		if(keycode == 13){
+			var check = true;
+			urls = $('#new-note-links').val().split("\n");
+			for(var i = 0; i <= urls.length-1; i++){
+				var tmp = isUrl(urls[i]);
+				if(tmp == false){
+					alert("Enter valid url");
+					check = false;
+					break;
+				}
+			}
+			if(check){
+				$('#new-note-links').css('text-decoration','underline');
+				$('#new-note-links').css('color','blue');
+			}
+			else{
+				$('#new-note-links').css('text-decoration','none');
+				$('#new-note-links').css('color','inherit');
+			}
+		}
+	});
+
+
+
+	
 	$('[id^=file_]').click(function(evt){
+		//$('pdf-viewer-info').addClass('hidden');
+		$('#pdf-viewer').addClass('gif-loading');
 		$('canvas').remove();
 		file_open = false;
 		//--- now open
@@ -85,6 +135,7 @@ $(document).ready(function(){
 		//console.log(relative_path);
 		displayDocument(1, 0, 1.6, relative_path);
 		file_open = true;
+		
 	});
 
 	document.getElementById("zoom-in").onclick = function(){
@@ -147,18 +198,82 @@ $(document).ready(function(){
 			}	
 		}
 	}
+	
+	function get_scroll_percentage(){
+		var doc_scroll = $("#pdf-viewer").scrollTop();
+		if(doc_scroll == 0){
+			doc_scroll = 1;
+		}
+		var doc_height = ($('canvas').height())*num_of_pages;
+		var doc_per = (doc_scroll/doc_height)*100;
+		//console.log("scrollPercent :",doc_per," %");
+		return doc_per;
+	}
 
+	function scroll_to_percentage(note_percentage){
+		//console.log(note_percentage);
+		var doc_height = ($('canvas').height())*num_of_pages;
+		console.log(doc_height);
+		var scroll_to = note_percentage * doc_height * 0.01;
+		console.log(scroll_to);
+		$("#pdf-viewer").scrollTop(scroll_to);
+	}
 	document.getElementById("make-note").onclick = function(){
 		//log % scroll
 		if(file_open){
-			var doc_scroll = $("#pdf-viewer").scrollTop();
-			var doc_height = ($('canvas').height())*num_of_pages;
-			var doc_per = (doc_scroll/doc_height)*100;
-			console.log("scrollPercent :",doc_per," %");
+			$('#show-catalogue-note').addClass('hidden');
+			$('#new-note-form').removeClass('hidden');
+			//-------------------------------- comment next line later function meant to be called from php
+			scroll_percentage = get_scroll_percentage();
+			//---- next line is only for testing purposes
+			console.log(scroll_percentage);
+			document.getElementById("notes-drawer").style.width = "24.5vw";
+		}
+		else{
+			alert("Open an e-book first!");
+		}
+	}
+	//comment next line later
+	catalogue_open = true;
+	document.getElementById("open-note").onclick = function(){
+		//------- next line for testing
+		scroll_to_percentage(76.111111111111114);
+		if(catalogue_open){
+			$('#new-note-form').addClass('hidden');
+			$('#show-catalogue-note').removeClass('hidden');
 			document.getElementById("notes-drawer").style.width = "24.5vw";
 		}
 	}
-	//#pdf-viewer
+
+	document.getElementById("notes-close").onclick = function(){
+		document.getElementById("notes-drawer").style.width = "0";
+	}
+
+	//-------------- also check the range of scroll to show the blinking button
+	//--------------------------------------------------------------------------------
+	if(catalogue_open){
+		$('#open-note').removeClass('hidden');
+
+		var cycle = 1;
+		setInterval(function(){
+			switch(cycle){
+				case 1:{
+					cycle = 2;
+					$('#open-note').css('-webkit-filter',"grayscale(20%)");
+					$('#open-note').css('filter',"grayscale(20%)");
+					break;
+				}
+				case 2:{
+					cycle = 1;
+					$('#open-note').css('-webkit-filter',"grayscale(0%)");
+					$('#open-note').css('filter',"grayscale(0%)");
+					break;
+				}
+			}
+		}, 250);
+	}
+
+	//scroll using arrow keys
 	$('body').keydown(function(evt){
 		var keycode = (evt.keyCode ? evt.keyCode : evt.which);
 		//console.log(keycode);
@@ -173,4 +288,15 @@ $(document).ready(function(){
 			$("#pdf-viewer").scrollTop(curr_scroll);
 		}
 	});
+	$('[id^=bookmark]').click(function(evt){
+		file_open = true;
+		catalogue_open = true;
+		$('#pdf-viewer').addClass('gif-loading');
+		$('canvas').remove();
+		$('[id^=bookmark]').removeClass('list-group-item-warning');
+		$(this).addClass('list-group-item-warning');
+		//---- next line is only for testing purposes
+		scroll_to_percentage(26.111111111111114);
+	});
 });
+//

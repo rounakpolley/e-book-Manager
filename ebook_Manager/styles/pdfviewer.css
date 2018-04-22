@@ -1,7 +1,12 @@
 #pdf-viewer{
-	height: 100vh; 						width: 75vw; 					overflow-y: scroll;
-	background-repeat: no-repeat;		background-color: #e3eeef;		background-position: center;
-	background-image: url(../graphics/loading2.gif);					float: right;
+	 height: 100vh; 						width: 75vw; 			     overflow-y: scroll;         float: right;
+	 background-repeat: no-repeat;		background-color: #e3eeef;		background-position: center;   
+}
+#pdf-viewer-info{
+    text-align: center;   margin: auto;   width: 30vw;  color: green;   margin-top: 40vh;  
+}
+.gif-loading{
+    background-image: url(../graphics/loading2.gif)
 }
 canvas{
 	display: block;		margin-left: auto;		margin-right: auto;		margin-top: auto;		margin-bottom: auto;
@@ -16,11 +21,36 @@ canvas{
 	height: 50px;		bottom: 30px;			right: 35px;
 }
 #rotate{
-	height: 45px;		top: 20px;				right: 20px;	/*background-color: white;	border-radius: 50px;*/
+	height: 45px;		top: 20px;				right: 35px;	/*background-color: white;	border-radius: 50px;*/
+}
+#open-note{
+	height: 50px;		bottom: 130px;			right: 35px;	
 }
 .floating-action-button{
 	position: fixed;	z-index: 100;
 }
 .floating-action-button:hover{
- cursor: pointer;
+    cursor: pointer;
+}
+.list-group-item:hover{
+    cursor: pointer;
+}
+/* ripple effect - scass */
+.circle-ripple {
+  border-radius: 30%;
+  animation: ripple 0.7s linear infinite;
+}
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0   rgba(#65ff78, 0.3),
+                0 0 0 1em rgba(#65ff78, 0.3),
+                0 0 0 3em rgba(#65ff78, 0.3),
+                0 0 0 5em rgba(#65ff78, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 1em rgba(#65ff78, 0.3),
+                0 0 0 3em rgba(#65ff78, 0.3),
+                0 0 0 5em rgba(#65ff78, 0.3),
+                0 0 0 8em rgba(#65ff78, 0);
+  }
 }
