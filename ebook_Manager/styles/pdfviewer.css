@@ -16,7 +16,7 @@ canvas{
 	height: 50px;		bottom: 30px;			right: 35px;
 }
 #rotate{
-	height: 45px;		top: 20px;				right: 20px;	background-color: white;	border-radius: 50px;
+	height: 45px;		top: 20px;				right: 20px;	/*background-color: white;	border-radius: 50px;*/
 }
 .floating-action-button{
 	position: fixed;	z-index: 100;

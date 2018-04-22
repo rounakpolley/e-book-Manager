@@ -7,7 +7,7 @@ include('../dbconnection.php');
 
 <?php 
 	$id = $_SESSION['id'];
-	echo $id;
+	//echo $id;
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,7 @@ include('../dbconnection.php');
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>e-Book Manager</title>
-	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<link href="../favicon.ico" rel="shortcut icon" type="image/x-icon">
 	
 	<link rel="stylesheet" href="cdn/bootstrap3.3.7.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -70,30 +70,19 @@ include('../dbconnection.php');
 		    	</div>
 		    	<div id="files-show">
 					<div class="list-group">
-
-						<!--jQuery add and remove list-group-item-success class
-					  	<a id="file-holder-no-1" href="javascript:void(0)" value="files/gw.pdf" 
-					  		class="list-group-item list-group-item-success">
-							<img src="icons/file.png" class="file-icon">
-					  		<span id="file-no-1">File that is open</span>
-						</a>-->
-
-
-						<!-- Creating File List From Database.-->
+						<!--Showing files form database-->
 						<?php
 							$sql = "SELECT * FROM files where user_id = $id";
 							$result = mysqli_query($con,$sql);
 							while($row = mysqli_fetch_assoc($result))
 							{
-								echo '<a href="javascript:void(0)" ';
+								echo '<a id="file_'.$row['file_id'].'" href="javascript:void(0)" ';
 								echo 'file_path="'.$row['rel_file_path'].'" class="list-group-item">';
 								echo '<img src="icons/file.png" class="file-icon">';
-								echo '<span id="'.$row['file_id'].'">'.$row['file_name'].'</span></a>';
+								echo '<span>'.$row['file_name'].'</span></a>';
 		
 							}
 						?>
-
-
 					</div>
 		    	</div>
 			</div>
@@ -106,36 +95,6 @@ include('../dbconnection.php');
 		        		</button>
 		      		</span>
 		    	</div>
-				<!--<div id="catalogues-show">
-					<div id="catalogues-no-1" class="panel-group">
-		                <div class="panel panel-default panel-success">
-		                    <div  data-toggle="collapse" href="#catalogues-1-contents" class="panel-heading">
-		                        <h5 class="panel-title">
-									<img src="icons/folder.png" class="folder-icon">
-		                        	<span id="catalogue-no-1">Catalogue name1</span> &nbsp; <span class="caret"></span>
-		                        </h5>
-		                    </div>
-		                    <div id="catalogues-1-contents" class="panel-collapse collapse">
-		                        <ul class="list-group">
-		                            <li class="list-group-item">
-										<img src="icons/bookmark.png" class="folder-icon">
-		                            	<span id="bookmark-no-1">Bookmark name1</span>
-		                            </li>
-		                            <li class="list-group-item">
-		                            	<img src="icons/bookmark.png" class="folder-icon">
-		                            	<span id="bookmark-no-2">Bookmark No. 2</span>
-		                            </li>
-		                            <li class="list-group-item">
-		                            	<img src="icons/bookmark.png" class="folder-icon">
-		                            	<span id="bookmark-no-3">Remove panel-success class from all cateloges only with one that is currently open on click</span>
-		                            </li>
-		                        </ul>
-		                    </div>
-		                </div>
-		            </div> -->
-
-
-		            
 		            <!-- Creating Catalogue List From Database.-->
 						<?php
 							$sql = "SELECT * FROM catalogues where user_id = $id";
@@ -148,7 +107,7 @@ include('../dbconnection.php');
 		                    	echo '<div  data-toggle="collapse" href="#catalogues-1-contents" class="panel-heading">';
 		                        echo '<h5 class="panel-title">';
 								echo '<img src="icons/folder.png" class="folder-icon">';
-		                        echo '<span id="catalogue-no-1">"'.$row['catalogue_name'].'"</span> &nbsp; <span class="caret"></span>';
+		                        echo '<span id="catalogue-no-1">'.$row['catalogue_name'].'</span> &nbsp; <span class="caret"></span>';
 		                        echo '</h5>';
 		                    	echo '</div>';
 		                    	echo '<div id="catalogues-1-contents" class="panel-collapse collapse">';
@@ -221,7 +180,8 @@ include('../dbconnection.php');
                        style="width: 18vw;"/><br/><br/>
                 <!-- generate a default value from php -->
                 <textarea id="new-note-text" name="new-note-text" class="note-form-content" 
-                          placeholder="Jot down notes.." style="width: 18vw;"></textarea><br/>
+                          placeholder="Jot down notes.." style="width: 18vw; height: 150px; overflow: auto;">
+                </textarea><br/><br/>
                 <textarea id="new-note-links" name="new-note-links" class="note-form-content" 
                        type="url" placeholder="Enter each link in separate line"
                           style="overflow-x: auto; white-space: nowrap; width: 18vw;"></textarea><br/>
@@ -231,7 +191,7 @@ include('../dbconnection.php');
                        type="file" style="color: white;" multiple /><br/>
                 <button type="submit" value="submit-note" id="submit-note" name="submit-note" 
                         style="margin-left: 10vw;"
-                        class="btn btn-warning">Make Note</button>
+                        class="btn btn-warning">Make Note</button><br/><br/>
             </div>
         </form>
 	</div>

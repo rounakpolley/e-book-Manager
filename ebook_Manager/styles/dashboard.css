@@ -1,4 +1,13 @@
 #main_body{
 	margin: 0px;	background-color: black;		display: flex;
 }
-
+textarea{
+	border-radius: 5px;
+}
+.list-group{
+    max-width: 22vw;
+    overflow-wrap: break-word;
+}
+/*.list-group-item{
+	padding: 0px;
+}*/
