@@ -27,7 +27,5 @@ $(document).ready(function(){
 		$('#catalogue-modal-contents').css('display','block');
 		$('#file-modal-contents').css('display','none');
 	});
-	document.getElementById("notes-close").onclick = function(){
-		document.getElementById("notes-drawer").style.width = "0";
-	}
+
 });

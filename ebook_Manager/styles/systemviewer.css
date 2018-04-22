@@ -2,15 +2,18 @@
 	float: left;		height: 100vh;			background-color: white;	/*overflow-x: hidden;*/
 }/*width: 24vw;*/
 #system-header{
-	height: 40px;		font-size: 20px;	text-align: middle;		background-color: #cd0afc;		color: white;
+	height: 40px;		font-size: 20px;	text-align: middle;		background-color: #C6FF00;		color: white;
 	padding-left: 20px;	padding-top: 7px;	position: fixed;		width: 24.5vw;					z-index: 1;
 }
 
 #settings{
 	height: 30px;		left: 21.5vw;		top: 6px;
+    -webkit-transition: -webkit-transform 2s; /* Safari */
+    transition: transform 2s;
 }
 #settings-dropdown{
 	z-index: 100;		left: 12vw;			position: fixed;	top: 40px;overflow: visible !important;
+    width: 150px;
 }
 #settings-username{
 	font-weight: 900;
@@ -96,7 +99,7 @@ height: calc(100vh - 80px);
 .sidenav {
     height: 100%;       width: 0;       position: fixed;    z-index: 100;       top: 0;     left: 0;
     background-color: #111;             overflow-x: hidden; transition: 0.2s;   padding-top: 60px;
-    padding-left: 20px;
+    /*padding-left: 20px;*/
 }
 .sidenav a {
     padding: 8px 8px 8px 32px;  text-decoration: none;      color: #818181;
@@ -128,4 +131,7 @@ height: calc(100vh - 80px);
 .folder-icon{
     height: 15px;       margin-top: -3px;   margin-right: 5px;
 }
-
+#settings:hover {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
