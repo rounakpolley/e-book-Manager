@@ -105,7 +105,7 @@ include('../dbconnection.php');
 							{
 								
 								echo '<div id="catalogue-no-'.$row['catalogue_id'].'" class="panel-group">';
-		                		echo '<div class="panel panel-default panel-danger">';
+		                		echo '<div class="panel panel-default panel-warning">';
 		                    	echo '<div  data-toggle="collapse" href="#catalogue-'.$row['catalogue_id'].'-contents" class="panel-heading">';
 		                        echo '<h5 class="panel-title">';
 								echo '<img src="icons/folder.png" class="folder-icon">';

@@ -5,6 +5,8 @@ $(document).ready(function(){
 	var num_of_pages = 0;
 	var zoom_level = 1.6;
 	var path = "";
+	var selected_catalog_id = "";
+	var selected_bookmark_id = "";
 	var file_open = false;
 	var catalogue_open = false;
 
@@ -288,6 +290,18 @@ $(document).ready(function(){
 			$("#pdf-viewer").scrollTop(curr_scroll);
 		}
 	});
+
+	$('[id^=catalogue-no-].panel-group > div').click(function(evt){
+		$('[id^=catalogue-no-].panel-group > div').removeClass('panel-danger');
+		$('[id^=catalogue-no-].panel-group > div').addClass('panel-warning');
+		$(this).removeClass('panel-warning');
+		$(this).addClass('panel-danger');
+
+		selected_catalog_id = $(this).parent().attr('id');
+		console.log(selected_catalog_id);
+		//slit this string to extract catalogue id for inserting into database
+	});
+
 	$('[id^=bookmark]').click(function(evt){
 		file_open = true;
 		catalogue_open = true;
@@ -295,8 +309,11 @@ $(document).ready(function(){
 		$('canvas').remove();
 		$('[id^=bookmark]').removeClass('list-group-item-warning');
 		$(this).addClass('list-group-item-warning');
+		selected_bookmark_id = $(this).attr('id');
+		console.log(selected_bookmark_id);
 		//---- next line is only for testing purposes
 		scroll_to_percentage(26.111111111111114);
 	});
+
 });
-//
+//catalogue-'.$row['catalogue_id'].'-contents
