@@ -10,6 +10,10 @@ $(document).ready(function(){
 	var file_open = false;
 	var catalogue_open = false;
 
+	function return_orientation(){
+		return rotation;
+	}
+
 	function renderPage(num){
 		//pdf global var
 			pdf.getPage(num)

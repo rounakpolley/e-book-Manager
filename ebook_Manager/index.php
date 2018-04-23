@@ -50,7 +50,7 @@ include('../dbconnection.php');
 				    <li><a href="../logout.php"><span id="settings-logout">Logout</span></a></li>
 				    <li role="separator" class="divider"></li>
 				    <li><a target="blank" href="help.html"><span id="settings-help">Help</span></a></li>
-				    <li ><a href="../index.php"><span id="settings-exit">Exit</span></a></li>
+				    <!--<li ><a href="../index.php"><span id="settings-exit">Exit</span></a></li>-->
 				    <!-- unable to exit properly -->
 			  	</ul>
 			</div>
