@@ -10,6 +10,10 @@ $(document).ready(function(){
 	var file_open = false;
 	var catalogue_open = false;
 
+	function return_orientation(){
+		return rotation;
+	}
+
 	function renderPage(num){
 		//pdf global var
 			pdf.getPage(num)
@@ -223,12 +227,15 @@ $(document).ready(function(){
 	document.getElementById("make-note").onclick = function(){
 		//log % scroll
 		if(file_open){
+			scroll_percentage = get_scroll_percentage();
+			$('#scroll-percentage').val(scroll_percentage);
+			$('#canvas-orientation').val(rotation);
+			//---- next line is only for testing purposes
+			console.log($('#scroll-percentage').val(),"|",$('#canvas-orientation').val());
+
 			$('#show-catalogue-note').addClass('hidden');
 			$('#new-note-form').removeClass('hidden');
-			//-------------------------------- comment next line later function meant to be called from php
-			scroll_percentage = get_scroll_percentage();
-			//---- next line is only for testing purposes
-			console.log(scroll_percentage);
+			
 			document.getElementById("notes-drawer").style.width = "24.5vw";
 		}
 		else{

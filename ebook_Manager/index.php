@@ -50,7 +50,7 @@ include('../dbconnection.php');
 				    <li><a href="../logout.php"><span id="settings-logout">Logout</span></a></li>
 				    <li role="separator" class="divider"></li>
 				    <li><a target="blank" href="help.html"><span id="settings-help">Help</span></a></li>
-				    <li ><a href="../index.php"><span id="settings-exit">Exit</span></a></li>
+				    <!--<li ><a href="../index.php"><span id="settings-exit">Exit</span></a></li>-->
 				    <!-- unable to exit properly -->
 			  	</ul>
 			</div>
@@ -62,14 +62,15 @@ include('../dbconnection.php');
 		</div>
 		<div id="tabview">
 			<div id="files" class="tabcontent">
-				<div id="files-search" class="input-group" style="padding-bottom: 7px;">
+				<form id="files-search"  action="" method="post"
+					class="input-group" style="padding-bottom: 7px;">
 		      		<input type="text" class="form-control" placeholder="Search files">
 		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button">
+		        		<button class="btn btn-default" type="submit">
 		        			<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 		        		</button>
 		      		</span>
-		    	</div>
+		    	</form>
 		    	<div id="files-show">
 					<div class="list-group">
 						<!--Showing files form database-->
@@ -78,25 +79,28 @@ include('../dbconnection.php');
 							$result = mysqli_query($con,$sql);
 							while($row = mysqli_fetch_assoc($result))
 							{
-								echo '<a id="file_'.$row['file_id'].'" href="javascript:void(0)" ';
+								echo '<a id="file_'.$row['file_id'].'" ';
 								echo 'file_path="'.$row['rel_file_path'].'" class="list-group-item">';
-								echo '<img src="icons/file.png" class="file-icon">';
-								echo '<span>'.$row['file_name'].'</span></a>';
-		
+								echo '<img src="icons/file.png" class="file-icon">&nbsp;';
+								echo '<img src="icons/download.png" class="download-icon">';
+								echo '<span>'.$row['file_name'].'</span>';
+								echo '</a>';
 							}
 						?>
 					</div>
 		    	</div>
 			</div>
-			<div id="catalogues" class="tabcontent">
-				<div id="catalogues-search" class="input-group" style="padding-bottom: 7px;">
+			<div id="catalogues" class="tabcontent">					
+
+				<form id="catalogues-search" action="" method="post"
+					class="input-group" style="padding-bottom: 7px;">
 		      		<input type="text" class="form-control" placeholder="Search catalogues">
 		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button">
+		        		<button class="btn btn-default" type="submit">
 		        			<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 		        		</button>
 		      		</span>
-		    	</div>
+		    	</form>
 		            <!-- Creating Catalogue List From Database.-->
 						<?php
 							$sql = "SELECT * FROM catalogues where user_id = $id";
@@ -181,6 +185,10 @@ include('../dbconnection.php');
 	  	<!-- do it -->
         <form action="" method="post" enctype="multipart/form-data" id="new-note-form" class="hidden">
             <div style="padding-left: 20px;">
+	
+				<!-- value of these input fields are set when make-note is clicked -->
+				<input type="hidden" id="scroll-percentage" name="scroll-percentage" value="">
+				<input type="hidden" id="canvas-orientation" name="canvas-orientation" value="">
 
                 <h3 style="color: white">Make a new note <br/><small>to be added to the current catalogue</small></h3>
                 <input id="new-note-name" name="new-note-name" class="note-form-content" type="text"

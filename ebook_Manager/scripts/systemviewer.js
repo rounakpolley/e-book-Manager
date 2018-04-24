@@ -28,4 +28,10 @@ $(document).ready(function(){
 		$('#file-modal-contents').css('display','none');
 	});
 
+	$('.download-icon').click(function(evt){
+		var rel_path = $(this).parent().attr('file_path');
+		evt.stopPropagation();
+		var error = rel_path + " : Not available for download";
+		alert(error);
+	})
 });
