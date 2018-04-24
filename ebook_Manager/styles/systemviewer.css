@@ -135,3 +135,6 @@ height: calc(100vh - 80px);
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
 }
+.download-icon{
+    height: 20px;   float: right;
+}
