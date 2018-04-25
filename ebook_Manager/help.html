@@ -1,7 +1,156 @@
-<h1>
-	Help page is yet to  be created.
-</h1>
+<!--
+<h1>Help page is yet to  be created.</h1>
+<h3>Saumyadeep will draft this static html page I will only make slight changes.</h3>
+-->
 
-<h3>
-	Saumyadeep will draft this static html page I will only make slight changes. 
-</h3>
+
+
+
+
+<h1 id="splitwisecloneapp">Splitwise - clone app</h1>
+
+<p>•    This is a clone app of <a href="https://www.splitwise.com/">Splitwise</a>.</p>
+
+<p>•    It is an app that makes it easy to split bills with friends and family. It allows you to organize all your shared expenses and IOUs in one place, so that everyone can see who they owe. </p>
+
+<p>•    It is a Minimum Viable Product(MVP) version of the original <a href="https://www.splitwise.com/">Splitwise</a> web application. A Minimum Viable Product is the "version of a new product which allows a team to collect the maximum amount of validated learning about customers with the least effort."</p>
+
+<h2 id="salientfeaturesoftheapp">Salient features of the app</h2>
+
+<ol>
+<li><p>Users can sign up using "username - password" based registration.</p></li>
+
+<li><p>Users can log in into their accounts, and will be authenticated with the help of "Hasura" Auth API.</p></li>
+
+<li><p>After logging in, users can select from a list of other registered users on the app and add them to their friend-list.</p></li>
+
+<li><p>Users can create groups of 3-4 members by selecting friends from their friend-list and can share/split their expenses equally with other members in the group.</p></li>
+
+<li><p>Provision of uploading an image of the bill with the help of filestore API of Hasura.</p></li>
+
+<li><p>Every logged in user is associated with a randomly generated "auth-token" which is unique for every login session and is used to maintain important user credentials in the Auth API.</p></li>
+</ol>
+
+<h2 id="workflow">Workflow</h2>
+
+<p>Let us consider an example where a group of friends are out on a road trip and one of them pays the tolls. These tolls can later be equally divided amongst the group of friends and a suitable transaction log will be maintained for the same. A group consisting of these friends needs to be formed and the person needs to upload the bill as an attachment and split the expense equally with the members of the group. Each member will owe an amount equal to <code>total_bill_amount / no. of group members</code> to this user who has uploaded the bill. Not only group expense sharing but peer to peer bill splitting option and transaction management is also equally viable.</p>
+
+<h2 id="requirements">Requirements</h2>
+
+<ol>
+<li><p><a href="https://reactjs.org/">React-JS</a> for frontend</p></li>
+
+<li><p><a href="https://expressjs.com/">NodeJS- Express</a> for backend</p></li>
+
+<li><p><a href="https://hasura.io/hub/project/hasura/auth-api-quickstart">Hasura Auth API</a></p></li>
+
+<li><p><a href="https://docs.hasura.io/0.15/manual/reference/data/index.html">Hasura Data API</a></p></li>
+
+<li><p><a href="https://docs.hasura.io/0.15/manual/reference/filestore/api.html">Hasura filestore API</a></p></li>
+
+<li><p>And other relevant <a href="https://docs.hasura.io/0.15/manual/getting-started/index.html">resources</a> provided by <a href="https://hasura.io/">Hasura</a></p></li>
+</ol>
+
+<h2 id="gettingstarted">Getting Started</h2>
+
+<blockquote>
+  <p>You can clone above remote repository to create a local copy on your computer and sync between the two locations.
+  Follow the instructions on the following link for the same, 
+  https://help.github.com/articles/cloning-a-repository/</p>
+</blockquote>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<blockquote>
+  <p>You need to install <code>git bash</code> if you are making use of Windows Operating system. 
+  https://www.youtube.com/watch?v=j70iLTSG0xg
+  Follow the video tutorial in the aforementioned link to successfully install <code>git-bash</code> on your machine.</p>
+
+  <p><a href="https://docs.hasura.io/0.15/manual/install-hasura-cli.html">Install hasura CLI</a></p>
+</blockquote>
+
+<h3 id="installing">Installing</h3>
+
+<p>Assuming that you have the local copy of this remote github repository after successful cloning. If not then please refer <strong>"Getting started"</strong> section above.</p>
+
+<h5 id="">#</h5>
+
+<p>:point_right: Step 1: First enter the directory i.e. your local repository
+<img src="https://user-images.githubusercontent.com/30600211/35770151-15b90944-093c-11e8-9236-5f6bd511f0f8.PNG" alt="cd_dir" /></p>
+
+<p>:point_right: Step 2: Type the following command to create a <code>package.json</code> file:</p>
+
+<pre><code>npm init
+</code></pre>
+
+<p>Press the Return/Enter key in response to all the questions to accept the default values <strong>except "entry point" option</strong>
+For the <strong>entry point</strong> option the default value should be modified to:</p>
+
+<pre><code>entry point: (app.js)
+</code></pre>
+
+<p><img src="https://user-images.githubusercontent.com/30600211/35749943-3789a628-0879-11e8-8716-859d17309884.PNG" alt="npm_init" />
+:point_right: Step 3: Type the following command to install the necessary react and other modules:</p>
+
+<pre><code>npm install
+</code></pre>
+
+<p><img src="https://user-images.githubusercontent.com/30600211/35749949-3e7d7b9e-0879-11e8-9bdc-20b792097370.PNG" alt="npm_install" /></p>
+
+<p><strong>Note</strong>: This might almost take a minute or so, be patient :innocent:</p>
+
+<p>:point_right: Step 4: Type the following command to launch the react app and the app runs on the <code>port 3000</code> of the server by default. You can open any browser( preferably <em>Google chrome</em> ) and visit the URL http://localhost:3000</p>
+
+<pre><code>npm start
+</code></pre>
+
+<p><img src="https://user-images.githubusercontent.com/30600211/35749955-428294b8-0879-11e8-9f47-f13672e5d6bc.PNG" alt="npm_start" /></p>
+
+<h2 id="testyourapplocally">Test your app locally</h2>
+
+<p>On visiting http://localhost:3000 , you can see the default page i.e. the SignUp page.
+<img src="https://user-images.githubusercontent.com/30698500/36553818-599924d2-1823-11e8-951a-be30eb98bc6a.png" alt="preview" /></p>
+
+<h3 id="stepstobefollowed">Steps to be followed</h3>
+
+<p><code>NOTE: Following screenshots depict the app running on a hasura cluster and not locally.</code>
+<br />
+To deploy your own app and explore hasura clusters , refer these <a href="https://docs.hasura.io/0.15/manual/cluster/index.html">docs</a>.</p>
+
+<blockquote>
+  <p>:arrow_right:Enter your credentials to SignUp/Register.</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/30698500/36553820-5a10a2aa-1823-11e8-85c9-eb38ade84fb9.png" alt="1 signup" /></p>
+
+<blockquote>
+  <p>:arrow_right:After sucessful registration you will be redirected to the login page, here you are expected to enter your valid credentials. The authentication of the users is handled by making API call to <a href="https://hasura.io/hub/project/hasura/auth-api-quickstart">Hasura Auth API</a>.</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/30698500/36553824-5b00bdbc-1823-11e8-883b-5f0a75da4b9b.png" alt="2 login" /></p>
+
+<p>:arrow_right:Here is your dashboard. You can view your profile details on right-top corner of this web page. All kinds of management i.e. adding friends to your friend-list from existing users of the app and forming new groups by selecting members of the group from your friend-list are done on the dashboard itself.</p>
+
+<p><img src="https://user-images.githubusercontent.com/30600211/35769856-b3b376a2-0937-11e8-9957-207518e3d985.png" alt="3 new_account" /></p>
+
+<p>:arrow_right:You can add friends to your friend-list by clicking on the <strong>"+"</strong> sign on the friends tab on the left hand side of the web page where you can later view your friend-list.</p>
+
+<p><img src="https://user-images.githubusercontent.com/30600211/35769858-b5900ada-0937-11e8-8d67-709e18efdb85.png" alt="4 add_friends" /></p>
+
+<p>:arrow_right:You can form new groups and add members to it from your existing friend-list by clicking on the <strong>"+"</strong> sign on the groups tab on the left hand side of the web page where you can later view list of groups that you are a part of.</p>
+
+<p><img src="https://user-images.githubusercontent.com/30600211/35769859-b7c10b56-0937-11e8-8c20-b47feb303f2b.png" alt="5 add_group" /></p>
+
+<p><img src="https://user-images.githubusercontent.com/30600211/35769860-ba498254-0937-11e8-884b-8d26ea76cc85.png" alt="6 dashboard_after_adding_friends_groups" /></p>
+
+<p>:arrow_right:You can add an attachment in the form of an image of your bill with the bill details.</p>
+
+<p><img src="https://user-images.githubusercontent.com/30600211/35769861-bbf3626e-0937-11e8-92b5-dfd497b694a9.png" alt="7 add_bill" /></p>
+
+<p><img src="https://user-images.githubusercontent.com/30600211/35769862-bda371a8-0937-11e8-9cc7-ff8adc3c0f43.png" alt="8 after_adding_bills" /></p>
+
+<p><img src="https://user-images.githubusercontent.com/30600211/35769863-bf42ca9a-0937-11e8-8fbb-03291624aab3.png" alt="9 changes_on_others_dashboard" /></p>
+
+<p>:arrow_right:You can logout by clicking on your username tab on the top-right section of the dashboard. You will be redirected to the login page after successfully logging out.</p>
+
+<p><img src="https://user-images.githubusercontent.com/30600211/35770155-1c5b5bf8-093c-11e8-972b-8ad23412a8f1.png" alt="10 logout" /></p>
