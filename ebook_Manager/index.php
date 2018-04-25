@@ -27,7 +27,7 @@ include('../dbconnection.php');
 	
 	<link rel="stylesheet" type="text/css" href="styles/dashboard.css">
 	<link rel="stylesheet" type="text/css" href="styles/systemviewer.css">
-	<link rel="stylesheet" href="styles/pdfviewer.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="styles/pdfviewer.css">
 
 	<script type="text/javascript" src="scripts/index.js"></script>
 	<script type="text/javascript" src="scripts/pdfviewer.js"></script>
