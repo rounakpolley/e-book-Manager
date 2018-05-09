@@ -1,3 +1,5 @@
+If this is your first time using git then make a copy of the project directory just in case..
+
 ### Get your copy
 `git clone https://github.com/rounakpolley/e-book-Manager.git`
 
@@ -46,6 +48,7 @@ You might get only *master that is good! Now switch/create a new one
 `git checkout -b prototype`
 The result will tell you that you have switched to a new branch also instead of prototype you can choose any single word
 
+
 ### Update your project
 `git pull origin master`
 ```
@@ -67,14 +70,21 @@ Fast-forward
  
  ### Add and commit your changes
  `git add .`
- `git commit -m "type a commit message in quotes like mailing feature is fixed"`
+ `
+ git commit -m "type a commit message in quotes like mailing feature is fixed"`
+ 
  No need to add each file searately and then commit them...
  
  ### Push your changes and create a pull request
  `git push origin prototype`
+ 
  Instead of "prototype" use the nam of your branch **BUT NEVER push to `master` branch**
  Then wait for some time..
+ 
  After that got to https://github.com/rounakpolley/e-book-Manager/
  And select your branch name and click create a pull request (like shown in the image)
  
  https://drupal.gatech.edu/sites/default/files/inline-images/fork7.jpg
+
+
+# Follow any youtube video tutorial... for more guidance
