@@ -1,10 +1,10 @@
-###Get your copy
+### Get your copy
 `git clone https://github.com/rounakpolley/e-book-Manager.git`
 or use ssh
 `git clone git@github.com:rounakpolley/e-book-Manager.git`
 or download zip
 
-###Check your project status
+### Check your project status
 `git status` you should get something like
 ```
 On branch feature
@@ -20,7 +20,7 @@ origin	git@github.com:rounakpolley/Ebook_Manager.git (push)
 ```
 If you get not a git project then...
 
-###Initalize git VCS and add remote
+### Initalize git VCS and add remote
 `git init`
 Followed by
 `git remote add https://github.com/rounakpolley/e-book-Manager.git`
