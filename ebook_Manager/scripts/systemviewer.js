@@ -31,7 +31,23 @@ $(document).ready(function(){
 	$('.download-icon').click(function(evt){
 		var rel_path = $(this).parent().attr('file_path');
 		evt.stopPropagation();
-		var error = rel_path + " : Not available for download";
-		alert(error);
-	})
+		window.open('php/download_file.php?file_path='+rel_path, '_blank');
+		//console.log(rel_path);
+		//php/download_file.php?file_path='
+		//var error = rel_path + " : Not available for download";
+		//alert(error);
+	});
+	$('[id^=catalogue-no-].panel-group > div').click(function(evt){
+		$('[id^=catalogue-no-].panel-group > div').removeClass('panel-danger');
+		$('[id^=catalogue-no-].panel-group > div').addClass('panel-warning');
+		$(this).removeClass('panel-warning');
+		$(this).addClass('panel-danger');
+
+		selected_catalog_id = $(this).parent().attr('id');
+		console.log(selected_catalog_id);
+
+		//selected-catalogue-id
+		$('#selected-catalogue-id').val(selected_catalog_id);
+		//slit this string to extract catalogue id for inserting into database
+	});
 });
