@@ -186,7 +186,7 @@ include('../dbconnection.php');
 	<div id="notes-drawer" class="sidenav">
 	  	<a href="javascript:void(0)" class="closebtn" id="notes-close">&times;</a>
 	  	<!-- do it -->
-        <form action="php/note_create.php" method="post" enctype="multipart/form-data" id="new-note-form" class="hidden">
+        <form action="php/note_create.php" target = '_blank' method="post" enctype="multipart/form-data" id="new-note-form" class="hidden">
             <div style="padding-left: 20px;">
 	
 				<!-- value of these input fields are set when make-note is clicked -->
@@ -207,8 +207,8 @@ include('../dbconnection.php');
                        type="url" placeholder="Enter each link in separate line"
                           style="overflow-x: auto; white-space: pre; width: 18vw; height: 70px;"></textarea><br/>
                 <h5 style="color: white">Upload images with note</h5>
-                <input id="new-note-images" name="new-note-images" class="note-form-content" 
-                       style="width: 18vw; color: white;"
+                <input id="new-note-images" name="new-note-images[]" class="note-form-content" 
+                       style="width: 18vw; color: white;" 
                        type="file" style="color: white;" multiple /><br/>
                 <button type="submit" value="submit-note" id="submit-note" name="submit-note" 
                         style="margin-left: 10vw;"

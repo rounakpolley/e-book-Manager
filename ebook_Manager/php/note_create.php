@@ -26,8 +26,9 @@ if (isset($_POST['new-note-name']))
 	echo "$scroll_percentage<br>";
 	$selected_file_path = $_POST['selected-file-path'];
 
+echo "$selected_file_path  file path";
 
-git 
+ 
 	if(isset($_SESSION['id']))
 	{
 				
@@ -173,4 +174,5 @@ unset($_POST['selected-catalogue-id']);
 unset($_POST['canvas-orientation']);
 unset($_POST['scroll-percentage']);
 mysqli_close($con);
+echo '<script type="text/javascript">window.close()</script>';
 ?>

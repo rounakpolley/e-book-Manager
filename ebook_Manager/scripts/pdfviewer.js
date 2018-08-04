@@ -238,8 +238,9 @@ $(document).ready(function(){
 		var current_catalogue_id = $('#selected-catalogue-id').val();
 		//console.log(current_catalogue_id);
 		if(file_open){
-			//path
-			$('selected-file-path').val(path);
+			//console.log(path);
+			$('#selected-file-path').val(path);
+			//console.log("path"+$('selected-file-path').val());
 			if(current_catalogue_id == ""){
 				alert("You need to select a catalogue first to add notes to it.");
 			}
