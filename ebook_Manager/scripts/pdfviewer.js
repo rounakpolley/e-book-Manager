@@ -10,6 +10,15 @@ $(document).ready(function(){
 	var file_open = false;
 	var catalogue_open = false;
 
+	function makeid() {
+  		var text = "";
+  		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  		for (var i = 0; i < 10; i++)
+    		text += possible.charAt(Math.floor(Math.random() * possible.length));
+    	text = 'Enter Note Name '+text;
+  		return text;
+	}
+
 	function return_orientation(){
 		return rotation;
 	}
@@ -226,17 +235,30 @@ $(document).ready(function(){
 	}
 	document.getElementById("make-note").onclick = function(){
 		//log % scroll
+		var current_catalogue_id = $('#selected-catalogue-id').val();
+		//console.log(current_catalogue_id);
 		if(file_open){
-			scroll_percentage = get_scroll_percentage();
-			$('#scroll-percentage').val(scroll_percentage);
-			$('#canvas-orientation').val(rotation);
-			//---- next line is only for testing purposes
-			console.log($('#scroll-percentage').val(),"|",$('#canvas-orientation').val());
+			//console.log(path);
+			$('#selected-file-path').val(path);
+			//console.log("path"+$('selected-file-path').val());
+			if(current_catalogue_id == ""){
+				alert("You need to select a catalogue first to add notes to it.");
+			}
+			else{
+				$('#new-note-name').val(makeid());
 
-			$('#show-catalogue-note').addClass('hidden');
-			$('#new-note-form').removeClass('hidden');
-			
-			document.getElementById("notes-drawer").style.width = "24.5vw";
+				scroll_percentage = get_scroll_percentage();
+				$('#scroll-percentage').val(scroll_percentage);
+				$('#canvas-orientation').val(rotation);
+				//---- next line is only for testing purposes
+				console.log($('#scroll-percentage').val(),"|",$('#canvas-orientation').val());
+
+				$('#show-catalogue-note').addClass('hidden');
+				$('#new-note-form').removeClass('hidden');
+				
+				document.getElementById("notes-drawer").style.width = "24.5vw";
+				//window.open('../php/note_create.php','_blank');
+			}
 		}
 		else{
 			alert("Open an e-book first!");
@@ -297,7 +319,7 @@ $(document).ready(function(){
 			$("#pdf-viewer").scrollTop(curr_scroll);
 		}
 	});
-
+	/*
 	$('[id^=catalogue-no-].panel-group > div').click(function(evt){
 		$('[id^=catalogue-no-].panel-group > div').removeClass('panel-danger');
 		$('[id^=catalogue-no-].panel-group > div').addClass('panel-warning');
@@ -308,7 +330,7 @@ $(document).ready(function(){
 		console.log(selected_catalog_id);
 		//slit this string to extract catalogue id for inserting into database
 	});
-
+	*/
 	$('[id^=bookmark]').click(function(evt){
 		file_open = true;
 		catalogue_open = true;
@@ -319,7 +341,7 @@ $(document).ready(function(){
 		selected_bookmark_id = $(this).attr('id');
 		console.log(selected_bookmark_id);
 		//---- next line is only for testing purposes
-		scroll_to_percentage(26.111111111111114);
+		scroll_to_percentage(26.4);
 	});
 
 });

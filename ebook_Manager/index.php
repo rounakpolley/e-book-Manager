@@ -83,6 +83,9 @@ include('../dbconnection.php');
 								echo 'file_path="'.$row['rel_file_path'].'" class="list-group-item">';
 								echo '<img src="icons/file.png" class="file-icon">&nbsp;';
 								echo '<img src="icons/download.png" class="download-icon">';
+								//echo '<img src="icons/file.png" class="file-icon">&nbsp;';
+                                //echo '<a href ="php/download_file.php?file_path='.$row['rel_file_path'].'">';
+                                //echo '</a>';
 								echo '<span>'.$row['file_name'].'</span>';
 								echo '</a>';
 							}
@@ -183,17 +186,19 @@ include('../dbconnection.php');
 	<div id="notes-drawer" class="sidenav">
 	  	<a href="javascript:void(0)" class="closebtn" id="notes-close">&times;</a>
 	  	<!-- do it -->
-        <form action="" method="post" enctype="multipart/form-data" id="new-note-form" class="hidden">
+        <form action="php/note_create.php" target = '_blank' method="post" enctype="multipart/form-data" id="new-note-form" class="hidden">
             <div style="padding-left: 20px;">
 	
 				<!-- value of these input fields are set when make-note is clicked -->
 				<input type="hidden" id="scroll-percentage" name="scroll-percentage" value="">
 				<input type="hidden" id="canvas-orientation" name="canvas-orientation" value="">
-
+				<input type="hidden" id="selected-file-path" name="selected-file-path" value="">
+				<input type="hidden" id="selected-catalogue-id" name="selected-catalogue-id" value="">
+				
                 <h3 style="color: white">Make a new note <br/><small>to be added to the current catalogue</small></h3>
                 <input id="new-note-name" name="new-note-name" class="note-form-content" type="text"
-                       placeholder="Note Name" value="default : Note no.1"
-                       style="width: 18vw;"/><br/><br/>
+                       placeholder="Note Name" value=""
+                       style="width: 18vw;" required /><br/><br/>
                 <!-- generate a default value from php -->
                 <textarea id="new-note-text" name="new-note-text" class="note-form-content" 
                           placeholder="Jot down notes.." style="width: 18vw; height: 150px; overflow: auto;"></textarea>
@@ -202,8 +207,8 @@ include('../dbconnection.php');
                        type="url" placeholder="Enter each link in separate line"
                           style="overflow-x: auto; white-space: pre; width: 18vw; height: 70px;"></textarea><br/>
                 <h5 style="color: white">Upload images with note</h5>
-                <input id="new-note-images" name="new-note-images" class="note-form-content" 
-                       style="width: 18vw; color: white;"
+                <input id="new-note-images" name="new-note-images[]" class="note-form-content" 
+                       style="width: 18vw; color: white;" 
                        type="file" style="color: white;" multiple /><br/>
                 <button type="submit" value="submit-note" id="submit-note" name="submit-note" 
                         style="margin-left: 10vw;"
