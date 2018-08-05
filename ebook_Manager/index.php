@@ -7,6 +7,7 @@ include('../dbconnection.php');
 
 <?php 
 	$id = $_SESSION['id'];
+	$_SESSION['file_refresh_bool']=true;
 	//echo $id;
 ?>
 <!DOCTYPE html>
@@ -153,7 +154,7 @@ include('../dbconnection.php');
 		<div class="dropup">
 			<img id="new-file-catalogue" class="floating-action-button dropdown-toggle" src="icons/add.png"  type="button"  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		  	<ul id="file-catalogue-modal" class="dropdown-menu" aria-labelledby="new-file-catalogue">
-		  		<form action="upload.php" method="post" enctype="multipart/form-data" id="new-file-catalogue-form">
+		  		<form action="upload.php" method="post" target="_blank" enctype="multipart/form-data" id="new-file-catalogue-form">
 		  			<div id="file-modal-contents">
 			  			<h4>Upload e-books</h4>
 			  			<input type="file" id="fileToUpload" name="fileToUpload[]" multiple 
@@ -169,6 +170,18 @@ include('../dbconnection.php');
 			  		</div><br/>
 			  		<button type="submit"  id="upload_file-create_catalogue" name="upload_file-create_catalogue" 
                             class="btn btn-success" style="float: right;">Done</button>
+                    <script type="text/javascript">
+                    	$('#upload_file-create_catalogue').click(function(evt){
+                    		/*
+                    		setTimeout(function(){
+   								 	//while(<?php echo $_SESSION['file_refresh_bool']; ?>){}
+                    				console.log("0987654321");
+                    				console.log(<?php echo '"qw"'; echo $_SESSION['file_refresh_bool']; ?>);
+                    				<?php $_SESSION['file_refresh_bool'] = true; ?>
+							}, 2000);
+							*/
+                    	});
+                    </script>
 		  		</form>
 		  	</ul>
 		</div>
@@ -242,6 +255,24 @@ include('../dbconnection.php');
         </div>
 	</div>
 <?php 
+/*
+echo "<script>
+function appendFile(){
+    //var anchor = document.createElement('a');
+    //var file_list = document.createTextNode('Water');
+    //anchor.appendChild(file_list);
+    var elem = document.getElementById('files-show').getElementsByClassName('list-group');
+    console.log(elem);
+    elem.appendChild(
+	    <a id='' file_path='' class='list-group-item'>
+		<img src='icons/file.png' class='file-icon'>&nbsp;
+		<img src='icons/download.png' class='download-icon'>
+		<span>file_name</span>
+		</a>);
+}
+appendFile();
+</script>";
+*/
 mysqli_close($con);
 ?>
 </body>
