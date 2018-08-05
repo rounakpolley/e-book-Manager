@@ -6,7 +6,7 @@ include('../dbconnection.php');
 ?>
 
 <?php
-header("Location: index.php");
+//header("Location: index.php");
 	
 if (isset($_FILES['fileToUpload']) && $_FILES['fileToUpload'] != null) 
 {
@@ -100,4 +100,18 @@ if (isset($_POST['new-catalogue-name']) && $_POST['new-catalogue-name'] != "")
 unset($_FILES['fileToUpload']);
 unset($_POST['new-catalogue-name']);
 mysqli_close($con);
+/*
+echo "<script>
+function appendFile(){
+    var anchor = document.createElement('a');
+    var file_list = document.createTextNode('Water');
+    anchor.appendChild(file_list);
+    document.getElementById('files-show').getElementsByClassName('list-group').appendChild(anchor);
+}
+appendFile();
+</script>";
+*/
+$_SESSION['file_refresh_bool'] =false;
+echo "<script type='text/javascript'>window.close();</script>";
+//echo "<script type='text/javascript'>console.log('12345');</script>";
 ?>
